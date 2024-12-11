@@ -7,7 +7,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/scardonadev/sheets-to-json-client.git"
   },
   "keywords": [
     "google",

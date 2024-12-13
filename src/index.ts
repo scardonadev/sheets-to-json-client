@@ -120,13 +120,3 @@ export async function sheetToJson<T>(
     return null;
   }
 }
-
-const prueba = async () => {
-  const data = await sheetToJson<Record<string, string>>(
-    "141BpNVhzLcHbC-nwmblQLIf8lpXK86sStmgqDJjhqB4",
-    "627439593"
-  );
-  console.log(data);
-};
-
-prueba();

@@ -1,6 +1,6 @@
 {
   "name": "sheets-to-json-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Utility for client/server side to convert Public Google Sheets to JSON",
   "author": "Sebastian Cardona Pérez",

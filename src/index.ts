@@ -73,7 +73,14 @@ export async function sheetToJson<T>(
     }
 
     if (jsonParsed.status === "ok" && jsonParsed.table) {
-      const headers: string[] = jsonParsed.table.cols.map((col) => {
+      let headerFixed = false;
+
+      const headers: string[] = jsonParsed.table.cols.map((col, i) => {
+        if (col.label === "") {
+          col.label = jsonParsed.table?.rows[0].c[i]?.v as string;
+          headerFixed = true;
+        }
+
         let label = col.label.split(" ").map((word, i) => {
           if (i === 0) return word.toLowerCase();
           return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
@@ -82,6 +89,8 @@ export async function sheetToJson<T>(
       });
 
       const dataFormated: SheetToJsonResponse<T>["dataFormated"] = [];
+
+      if (headerFixed) jsonParsed.table.rows.shift();
 
       const data: T[] = jsonParsed.table.rows.map(({ c }) => {
         const objFormated: Record<string, any> = {};
@@ -111,3 +120,13 @@ export async function sheetToJson<T>(
     return null;
   }
 }
+
+const prueba = async () => {
+  const data = await sheetToJson<Record<string, string>>(
+    "141BpNVhzLcHbC-nwmblQLIf8lpXK86sStmgqDJjhqB4",
+    "627439593"
+  );
+  console.log(data);
+};
+
+prueba();
